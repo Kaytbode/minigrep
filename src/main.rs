@@ -20,5 +20,5 @@ fn main() {
         process::exit(1);
     }
 
-    dbg!(args);
+   // dbg!(args);
 }
