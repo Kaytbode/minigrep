@@ -12,6 +12,11 @@ fn main() {
         process::exit(1);
     });
 
+    if let Err(e) = Config::run(&config) {
+        eprintln!("Application error: {e}");
+        process::exit(1);
+    }
+
     if let Err(e) = minigrep::run(config) {
         eprintln!("Application error: {e}");
         process::exit(1);

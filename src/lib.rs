@@ -25,6 +25,22 @@ impl Config {
             ignore_case,
          })
     }
+
+    pub fn run(&self) -> Result<(), Box<dyn Error>> {
+        let contents = fs::read_to_string(&self.file_path)?;
+    
+        let results = if self.ignore_case {
+            search_case_insensitive(&self.query, &contents)
+        } else {
+            search(&self.query, &contents)
+        };
+    
+        for line in results {
+            println!("{line}");
+        }
+    
+        Ok(())
+    }
 }
 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
